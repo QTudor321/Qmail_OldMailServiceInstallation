@@ -1,0 +1,34 @@
+List of Bash Commands for installing Qmail on Linux Ubuntu virtual machine - documented by QTudor333:
+- apt install -y: installing packages for libraries
+	- build-essential: contains libraries like gcc, make, libc6-dev used for compiling qmail from source tar gz file
+	- daemontools daemontools-run: contains libraries like svscan, svstat, supervise, svc, multilog for qmail service management
+	- ucspi-tcp: contains libraries like tcpserver, tcprules, tcpclient for network connection opening, binding and listening on port 25
+	- groff: contains libraries like nroff, troff for man pages for qmail implementation in /var/qmail ubuntu directory
+	- wget: for downloading from the Internet the qmail source tar gz file
+	- tar: for extracting the qmail source from the tar gz file
+	- tree: for displaying directories, subdirectories and files in a tree structure
+- echo "127.0.0.1:allow,RELAYCLIENT=\"\"" > /etc/tcp.smtp - Bash instruction that creates a tcpserver access rule for allowing the relay of mails through qmail-smtpd from any 127.0.0.1 local connection
+- tcprules /etc/tcp.smtp.cdb /etc/tcp.smtp.tmp < /etc/tcp.smtp - Bash instruction that compiles /etc/tcp.smtp file into a binary database .cdb that the tcpserver can read
+- chmod +x VerifyQmailInstallation.sh
+- chmod +x Qmailinstallation.sh
+- chmod +x OperationsQmail.sh - every script needs execution permissions, and have to be executed from /home/user/Documents folder as root
+- sendmail - inside /var/qmail/bin, a qmail tool used to send messages, mails and .eml files
+- inject - inside /var/qmail/bin, a qmail tool used to inject messages, mails and .eml files inside a receiver directory
+- qmail-qread - inside /var/qmail/bin, a qmail tool used to read every message id received by the root user
+- killall qmail-send qmail-smtpd qmail-lspawn qmail-rspawn qmail-clean tcpserver svscan runs multilog supervise qmail-start qmail-remote 2>/dev/null - instruction used for terminating all processes that have to do with qmail, so that there is no leaks anywhere
+- ufw status - command used to check linux firewall rules (should allow all tcp connections on port 25, the mail transfer agent port)
+- lsb_release -a - command used to check ubuntu linux version for compatibility with the scripts
+- dpkg -l | grep -E 'daemontools|djbdns' - command used to verify daemontools version, daemontools is used to compile and install qmail
+- svscan /service & - instruction that launches qmail services
+- svstatus /service/qmail-send and qmail-smtpd - command that checks if qmail services are on and working
+
+This whole project needs to be downloaded inside /home/$USER/Documents directory inside Linux Ubuntu Operating System.
+Every script needs execution permissions.
+Every run and rc files needs to be exactly where its placed, a wrong file placement means immediate crash of the Bash scripts.
+
+Bibliography:
+1. Bernstein, D. J. (1998). The qmail documentation. Retrieved from https://cr.yp.to/qmail.html
+2. netqmail contributors. (2007). netqmail 1.06 documentation and release notes. Retrieved from https://www.qmail.org/netqmail
+3. Bernstein, D. J. (2001). daemontools: supervision suite. Retrieved from https://cr.yp.to/daemontools.html
+4. Free Software Foundation. (2023). Bash Reference Manual. Retrieved from https://www.gnu.org/software/bash/manual/
+5. Michael Kerrisk (Ed.). (2024). The Linux man-pages project. Retrieved from https://man7.org/linux/man-pages/

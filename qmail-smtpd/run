@@ -1,0 +1,4 @@
+#!/bin/sh
+QMAILDUID=`id -u qmaild`
+NOFILESGID=`id -g qmaild`
+exec /usr/bin/tcpserver -v -R -l 0 -u $QMAILDUID -g $NOFILESGID 0 25 /var/qmail/bin/qmail-smtpd 2>&1
