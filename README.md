@@ -1,6 +1,9 @@
 # Qmail_OldNetworkServiceInstallation
 Qmail is an old and archived Unix mail transfer agent (MTA). Its services have been archived following years of digital evolution and other MTA's. This project purpose is to demonstrate DevOps, system and services administration capabilities by implementing an instant Qmail installation script in Bash from zero on any Ubuntu Linux virtual machine, while also configuring and documenting the archived Qmail service.
 The project contains a set of files and directories created to document and illustrate the steps taken to finish the mail service configuration.
+
+<img width="562" height="440" alt="image" src="https://github.com/user-attachments/assets/a40b1b82-e479-4d20-bffc-e3f337b4e154" />
+
 Project content:
 - images gallery with every step taken
 - qmail service directories (qmail-send and qmail-smtpd) that will be used by qmail tools to function and register logs
